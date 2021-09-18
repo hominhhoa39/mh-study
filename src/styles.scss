@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-toolbar.mat-primary {
+  background: #DA7F8F;
+  color: #fff;
+}
+
+.info-snackbar {
+  background-color: #00b894;
+  color: white;
+}
+
+.warn-snackbar {
+  background-color: #fdcb6e;
+  color: black;
+}
+
+.error-snackbar {
+  background-color: #ff7675;
+  color: white;
+}
+
+.sidenav-container {
+  background-color: #E1E5EA;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.word-display {
+  font-weight: bold;
+  color: #c51b0f;
+}
+.description {
+  white-space: pre-line;
+  .mean-display {
+    color: #274fcc;
+    font-weight: bold;
+  }
+}
+
+.mat-accordion {
+  margin-bottom: 8px;
+  .mat-expansion-panel-header {
+    height: 40px;
+  }
+  .mat-action-row {
+    height: 36px;
+    padding: 0px;
+  }
+  .mat-expansion-panel-body {
+    padding: 0 4px 4px 24px;
+  }
+}
+
+.mat-icon-button {
+  height:24px !important;
+  width:24px !important;
+  line-height: 24px !important;
+}
+.mat-icon{
+  height:24px !important;
+  width:24px !important;
+}
+
+.right-aligned-header {
+  .mat-content {
+    justify-content: space-between;
+    mat-panel-title, mat-panel-description {
+      flex: 0 0 auto;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<div style="height: 100vh">
+  <mat-toolbar color="primary">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>back</mat-icon>
+        <span>Previous</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voice mail</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
+    <span>Word</span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill class="sidenav-container">
+    <mat-sidenav-content fxFlexFill
+      ><router-outlet></router-outlet
+    ></mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

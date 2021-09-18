@@ -1,0 +1,112 @@
+<div fxLayout="column" fxLayoutGap="8px" style="padding: 12px">
+  <mat-card>
+    <form [formGroup]="wordForm" (ngSubmit)="onFormSubmit()">
+      <div fxLayoutGap="0px">
+        <div fxLayout="row" fxLayoutGap="8px">
+          <input type="hidden" formControlName="id" />
+          <input type="hidden" formControlName="mobileId" />
+          <mat-form-field
+            appearance="fill"
+            [style.width.%]="100"
+            [floatLabel]="'always'"
+          >
+            <mat-label>Word</mat-label>
+            <input matInput formControlName="word" />
+            <button
+              mat-button
+              *ngIf="word.value"
+              matSuffix
+              mat-icon-button
+              (click)="searchWord($event)"
+            >
+              <mat-icon>search</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <mat-form-field
+            appearance="fill"
+            [style.width.%]="100"
+            [floatLabel]="'always'"
+          >
+            <mat-label>Pronounce</mat-label>
+            <input matInput formControlName="phonetic" />
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <mat-form-field
+            appearance="fill"
+            [style.width.%]="100"
+            [floatLabel]="'always'"
+          >
+            <mat-label>Meaning</mat-label>
+            <textarea
+              matInput
+              formControlName="meaning"
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="3"
+            ></textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <mat-form-field
+            appearance="fill"
+            [style.width.%]="100"
+            [floatLabel]="'always'"
+          >
+            <mat-label>Example</mat-label>
+            <textarea
+              matInput
+              formControlName="example"
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"
+            ></textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <button
+            mat-raised-button
+            color="accent"
+            [disabled]="this.wordForm.invalid"
+            type="submit"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+
+  <div fxLayout="column">
+    <mat-accordion *ngFor="let word of words">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header class="right-aligned-header">
+          <mat-panel-title>
+            <span class="word-display">{{ word.word }}</span
+            >（{{ word.phonetic }}）
+          </mat-panel-title>
+          <mat-panel-description>
+            <button
+              mat-icon-button
+              color="basic"
+              (click)="editWord($event, word)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="column" class="description" fxFlex="grow">
+          <div class="mean-display">{{ word.meaning }}</div>
+          <div>{{ word.example }}</div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
