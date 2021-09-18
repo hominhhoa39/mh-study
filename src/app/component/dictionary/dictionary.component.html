@@ -1,1 +1,28 @@
-<p>dictionary works!</p>
+<div>
+  <mat-form-field appearance="outline" [floatLabel]="'always'">
+    <mat-label>Input word</mat-label>
+    <input
+      matInput
+      [matAutocomplete]="auto"
+      [formControl]="searchMoviesCtrl"
+    />
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+      <ng-container *ngIf="!isLoading">
+        <mat-option *ngFor="let movie of filteredMovies" [value]="movie">
+          <span class="word-display"
+            ><b>{{ movie.word }}</b></span
+          >
+          <span class="mean-display">（{{ movie.phonetic }}）</span>
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>
+  <!-- <br />
+  <ng-container *ngIf="errorMsg; else elseTemplate">
+    {{ errorMsg }}
+  </ng-container>
+  <ng-template #elseTemplate>
+    <h5>Selected Value: {{ searchMoviesCtrl.value | json }}</h5>
+  </ng-template> -->
+</div>
