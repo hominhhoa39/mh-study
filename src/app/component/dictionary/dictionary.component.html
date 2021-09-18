@@ -1,28 +1,35 @@
-<div>
-  <mat-form-field appearance="outline" [floatLabel]="'always'">
-    <mat-label>Input word</mat-label>
-    <input
-      matInput
-      [matAutocomplete]="auto"
-      [formControl]="searchMoviesCtrl"
-    />
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
-      <ng-container *ngIf="!isLoading">
-        <mat-option *ngFor="let movie of filteredMovies" [value]="movie">
-          <span class="word-display"
-            ><b>{{ movie.word }}</b></span
-          >
-          <span class="mean-display">（{{ movie.phonetic }}）</span>
-        </mat-option>
-      </ng-container>
-    </mat-autocomplete>
-  </mat-form-field>
-  <!-- <br />
+<div fxFlex="column">
+  <mat-form-field
+  appearance="outline"
+  [floatLabel]="'always'"
+  [style.width.%]="100"
+  class="search-input"
+>
+
+  <mat-icon matPrefix>search</mat-icon>
+  <input matInput [matAutocomplete]="auto" [formControl]="searchWordsCtrl" placeholder="Input word"/>
+  <button *ngIf="searchWords.value" matSuffix mat-icon-button (click)="searchWords.setValue('')">
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='onSearch($event.option.value)'>
+    <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let word of filteredWords" [value]="word">
+        <span class="word-display"
+          ><b>{{ word.word }}</b></span
+        >
+        <span class="mean-display">（{{ word.phonetic }}）</span>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>
+</mat-form-field>
+<mat-card>
   <ng-container *ngIf="errorMsg; else elseTemplate">
     {{ errorMsg }}
   </ng-container>
   <ng-template #elseTemplate>
-    <h5>Selected Value: {{ searchMoviesCtrl.value | json }}</h5>
-  </ng-template> -->
+    <h5>Selected Value: {{ searchWordsCtrl.value | json }}</h5>
+  </ng-template>
+</mat-card>
+
 </div>
