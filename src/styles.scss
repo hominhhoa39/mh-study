@@ -51,12 +51,14 @@ body {
   font-weight: bold;
   color: #c51b0f;
 }
+
+.mean-display {
+  color: #274fcc;
+  font-weight: bold;
+}
+
 .description {
   white-space: pre-line;
-  .mean-display {
-    color: #274fcc;
-    font-weight: bold;
-  }
 }
 
 .mat-accordion {

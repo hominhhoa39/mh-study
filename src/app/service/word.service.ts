@@ -17,6 +17,10 @@ export class WordService {
     return this.httpClient.post<Word>('/api/outside/search', { word });
   }
 
+  suggestOutside(word: any): Observable<Word[]> {
+    return this.httpClient.post<Word[]>('/api/outside/suggest', { word });
+  }
+
   save(word: Word): Observable<any> {
     return this.httpClient.post<any>('/api/words/create', {
       ...word,

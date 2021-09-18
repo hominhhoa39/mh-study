@@ -63,6 +63,7 @@ exports.outsideSearch = (req, res) => {
 
 exports.outsideSuggest = (req, res) => {
   const word = req.body.word;
+  console.log(`Suggest for ${word}`);
   axios.post(`${process.env.MZ_URI}/suggest`, {
       "keyword": word,
       "dict": "javi"
