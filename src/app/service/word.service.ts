@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Word } from '../model/word';
+import { FullWord, Word } from '../model/word';
 import { UtilService } from './util.service';
 
 @Injectable({
@@ -19,6 +19,14 @@ export class WordService {
 
   suggestOutside(word: any): Observable<Word[]> {
     return this.httpClient.post<Word[]>('/api/outside/suggest', { word });
+  }
+
+  searchFullOutside(word: string): Observable<FullWord> {
+    return this.httpClient.post<FullWord>('/api/outside/fullSearch', { word });
+  }
+
+  searchCommentOutside(wordId: number): Observable<Comment[]> {
+    return this.httpClient.post<Comment[]>('/api/outside/commentSearch', { wordId });
   }
 
   save(word: Word): Observable<any> {

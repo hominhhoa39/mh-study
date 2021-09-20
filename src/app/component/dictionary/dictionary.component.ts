@@ -12,20 +12,20 @@ import { WordService } from 'src/app/service/word.service';
   styleUrls: ['./dictionary.component.scss'],
 })
 export class DictionaryComponent implements OnInit {
-  searchMoviesCtrl = new FormControl();
-  filteredMovies: Word[] = [];
+  searchWordsCtrl = new FormControl();
+  filteredWords: Word[] = [];
   isLoading = false;
   errorMsg!: string;
 
   constructor(private wordService: WordService, private http: HttpClient) {}
 
   ngOnInit() {
-    this.searchMoviesCtrl.valueChanges
+    this.searchWordsCtrl.valueChanges
       .pipe(
-        debounceTime(500),
+        debounceTime(1000),
         tap(() => {
           this.errorMsg = '';
-          this.filteredMovies = [];
+          this.filteredWords = [];
           this.isLoading = true;
         }),
         switchMap((value) =>
@@ -41,19 +41,28 @@ export class DictionaryComponent implements OnInit {
         )
       )
       .subscribe((data) => {
-        // if (data['Search'] == undefined) {
-        //   this.errorMsg = data['Error'];
-        //   this.filteredMovies = [];
-        // } else {
-        //   this.errorMsg = "";
-        this.filteredMovies = data;
-        // }
-
-        // console.log(this.filteredMovies);
+        this.filteredWords = data;
       });
+  }
+
+  get searchWords() {
+    return this.searchWordsCtrl;
   }
 
   displayFn(w: Word): string {
     return w && w.word ? w.word : '';
+  }
+
+  onSearch(w: Word): void {
+    console.log(`Selected ${w.word}`);
+    this.wordService.searchFullOutside(w.word).subscribe(data => {
+      console.log(data);
+      const mobileId = data.mobileId;
+      if (mobileId && mobileId >= 0) {
+        this.wordService.searchCommentOutside(mobileId).subscribe(comments => {
+          console.log(comments);
+        })
+      }
+    })
   }
 }

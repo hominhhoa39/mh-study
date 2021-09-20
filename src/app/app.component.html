@@ -19,8 +19,18 @@
   </mat-toolbar>
 
   <mat-sidenav-container fxFlexFill class="sidenav-container">
-    <mat-sidenav-content fxFlexFill
-      ><router-outlet></router-outlet
-    ></mat-sidenav-content>
+    <mat-sidenav-content fxFlexFill>
+      <div flex fxLayout="row">
+        <div [fxFlex]="'calc(50% - 640px)'" fxHide.lt-lg></div>
+        <div fxFlex.gt-md="1280px" fxFlex.lt-lg="100">
+          <div flex fxLayout="row">
+            <div fxFlex.xs="8px" fxFlex.sm="24px" fxFlex.gt-sm="32px"></div>
+            <div fxFlex="auto"><router-outlet></router-outlet></div>
+            <div fxFlex.xs="8px" fxFlex.sm="24px" fxFlex.gt-sm="32px"></div>
+          </div>
+        </div>
+        <div [fxFlex]="'calc(50% - 640px)'" fxHide.lt-lg></div>
+      </div>
+    </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
