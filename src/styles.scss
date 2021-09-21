@@ -10,15 +10,6 @@ body {
   font-size: 14px;
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 .mat-toolbar.mat-primary {
   background: #da7f8f;
   color: #fff;
@@ -150,4 +141,17 @@ hr {
   opacity: 0.5;
   margin: 4px 0;
   padding: 0;
+}
+
+.search-button {
+  height: 50px;
+  color: #da7f8f;
+}
+
+.single-word-link {
+  color: blue;
+  margin-left: 16px;
+  &:hover {
+    text-decoration: underline;
+}
 }

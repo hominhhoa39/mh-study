@@ -80,7 +80,6 @@ exports.outsideSearch = (req, res) => {
 
 exports.outsideSuggest = (req, res) => {
   const word = req.body.word;
-  console.log(`Suggest for ${word}`);
   axios
     .post(`${process.env.MZ_URI}/suggest`, {
       keyword: word,
@@ -141,7 +140,6 @@ exports.outsideFullSearch = (req, res) => {
       if (Array.isArray(words)) {
         const matchedData = words.filter((w) => w.word === word);
         if (matchedData && matchedData.length > 0) {
-          let mobileId = matchedData[0].mobileId;
           result = { ...matchedData[0] };
         }
       }
