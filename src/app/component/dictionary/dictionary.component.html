@@ -14,7 +14,7 @@ mat-icon-button
 >
 <mat-icon>search</mat-icon>
 </button>
-  <input matInput [matAutocomplete]="auto" [formControl]="searchWordsCtrl" placeholder="Input word"/>
+  <input matInput [matAutocomplete]="auto" [formControl]="searchWordsCtrl" placeholder="Input word" (keydown)="keyDownFunction($event)"/>
   <button *ngIf="searchWords.value" matSuffix mat-icon-button (click)="searchWords.setValue('')">
     <mat-icon>close</mat-icon>
   </button>
