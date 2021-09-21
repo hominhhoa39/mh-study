@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
-import { Word } from 'src/app/model/word';
+import { FullWord, Word, WordComment } from 'src/app/model/word';
 import { WordService } from 'src/app/service/word.service';
 
 @Component({
@@ -15,7 +15,9 @@ export class DictionaryComponent implements OnInit {
   searchWordsCtrl = new FormControl();
   filteredWords: Word[] = [];
   isLoading = false;
-  errorMsg!: string;
+  // errorMsg!: string;
+  searchResult!: FullWord;
+  comments!: WordComment[];
 
   constructor(private wordService: WordService, private http: HttpClient) {}
 
@@ -24,7 +26,7 @@ export class DictionaryComponent implements OnInit {
       .pipe(
         debounceTime(1000),
         tap(() => {
-          this.errorMsg = '';
+          // this.errorMsg = '';
           this.filteredWords = [];
           this.isLoading = true;
         }),
@@ -53,16 +55,21 @@ export class DictionaryComponent implements OnInit {
     return w && w.word ? w.word : '';
   }
 
-  onSearch(w: Word): void {
-    console.log(`Selected ${w.word}`);
-    this.wordService.searchFullOutside(w.word).subscribe(data => {
-      console.log(data);
+  onSearch(w:  Word): void {
+    this.wordService.searchFullOutside(w.word).subscribe((data) => {
+      this.searchResult = data;
       const mobileId = data.mobileId;
       if (mobileId && mobileId >= 0) {
-        this.wordService.searchCommentOutside(mobileId).subscribe(comments => {
-          console.log(comments);
-        })
+        this.wordService
+          .searchCommentOutside(mobileId)
+          .subscribe((comments) => {
+            this.comments = comments;
+          });
       }
-    })
+    });
+  }
+  searchWord(evt: MouseEvent) {
+    evt.preventDefault();
+    this.onSearch({word: this.searchWordsCtrl.value});
   }
 }
