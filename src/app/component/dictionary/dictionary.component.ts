@@ -71,10 +71,9 @@ export class DictionaryComponent implements OnInit {
       });
     }
   }
-  
+
   searchWord(evt: MouseEvent) {
     this.matAutocomplete.closePanel();
-    evt.preventDefault();
     this.onSearch({ word: this.searchWordsCtrl.value });
   }
 
@@ -83,5 +82,10 @@ export class DictionaryComponent implements OnInit {
       this.matAutocomplete.closePanel();
       this.onSearch({ word: this.searchWordsCtrl.value });
     }
+  }
+
+  onWordClick(word: string) {
+    this.searchWords.setValue({word});
+    this.onSearch({ word });
   }
 }

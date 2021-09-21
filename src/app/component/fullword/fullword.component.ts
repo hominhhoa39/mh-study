@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FullWord } from 'src/app/model/word';
 
 @Component({
@@ -8,4 +8,9 @@ import { FullWord } from 'src/app/model/word';
 })
 export class FullwordComponent {
   @Input() word!: FullWord;
+  @Output() wordClickEvent = new EventEmitter<string>();
+
+  onWordClick(value: string) {
+    this.wordClickEvent.emit(value);
+  }
 }

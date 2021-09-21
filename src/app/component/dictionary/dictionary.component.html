@@ -1,39 +1,59 @@
 <div fxLayout="column" fxLayoutGap="12px">
-  <mat-form-field
-  appearance="outline"
-  [floatLabel]="'always'"
-  [style.width.%]="100"
-  class="search-input"
->
-<button
-mat-button
-*ngIf="searchWordsCtrl.value"
-matSuffix
-mat-icon-button
-(click)="searchWord($event)"
->
-<mat-icon>search</mat-icon>
-</button>
-  <input matInput [matAutocomplete]="auto" [formControl]="searchWordsCtrl" placeholder="Input word" (keydown)="keyDownFunction($event)"/>
-  <button *ngIf="searchWords.value" matSuffix mat-icon-button (click)="searchWords.setValue('')">
-    <mat-icon>close</mat-icon>
-  </button>
-  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='onSearch($event.option.value)'>
-    <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
-    <ng-container *ngIf="!isLoading">
-      <mat-option *ngFor="let word of filteredWords" [value]="word">
-        <span class="word-display"
-          ><b>{{ word.word }}</b></span
-        >
-        <span class="mean-display">（{{ word.phonetic }}）</span>
-      </mat-option>
-    </ng-container>
-  </mat-autocomplete>
-</mat-form-field>
-<mat-card *ngIf="searchResult">
-  <app-fullword [word]="searchResult"></app-fullword>
-</mat-card>
-<mat-card *ngIf="comments && comments.length > 0">
-  <app-comment [comments]="comments"></app-comment>
-</mat-card>
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <mat-form-field
+      appearance="outline"
+      [floatLabel]="'always'"
+      [style.width.%]="100"
+      class="search-input"
+    >
+      <input
+        matInput
+        [matAutocomplete]="auto"
+        [formControl]="searchWordsCtrl"
+        placeholder="Input word"
+        (keydown)="keyDownFunction($event)"
+      />
+      <button
+        *ngIf="searchWords.value"
+        matSuffix
+        mat-icon-button
+        (click)="searchWords.setValue('')"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayFn"
+        (optionSelected)="onSearch($event.option.value)"
+      >
+        <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+        <ng-container *ngIf="!isLoading">
+          <mat-option *ngFor="let word of filteredWords" [value]="word">
+            <span class="word-display"
+              ><b>{{ word.word }}</b></span
+            >
+            <span class="mean-display">（{{ word.phonetic }}）</span>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+    <div style="padding-top: 4px;">
+      <button
+      mat-raised-button
+      color="accent"
+      [disabled]="searchWordsCtrl.value == undefined || searchWordsCtrl.value === ''"
+      (click)="searchWord($event)"
+      class="search-button"
+    >
+      Search
+    </button>
+    </div>
+
+  </div>
+  <mat-card *ngIf="searchResult">
+    <app-fullword [word]="searchResult" (wordClickEvent)="onWordClick($event)"></app-fullword>
+  </mat-card>
+  <mat-card *ngIf="comments && comments.length > 0">
+    <app-comment [comments]="comments"></app-comment>
+  </mat-card>
 </div>

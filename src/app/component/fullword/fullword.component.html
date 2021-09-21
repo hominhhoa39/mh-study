@@ -23,7 +23,7 @@
         *ngFor="let opposite of word.opposite_word"
         fxLayout="row"
       >
-        <div style="margin-left: 16px">{{ opposite }}</div>
+        <div class="single-word-link" (click)="onWordClick(opposite)">{{ opposite }}</div>
       </div>
     </div>
   </ng-container>
@@ -35,7 +35,7 @@
         *ngFor="let relative of word.related_words.word"
         fxLayout="row"
       >
-        <div style="margin-left: 16px">{{ relative }}</div>
+        <div class="single-word-link" (click)="onWordClick(relative)">{{ relative }}</div>
       </div>
     </div>
   </ng-container>
