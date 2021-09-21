@@ -12,13 +12,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WordsComponent } from './component/words/words.component';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { DictionaryComponent } from './component/dictionary/dictionary.component';
+import { FullwordComponent } from './component/fullword/fullword.component';
+import { CommentComponent } from './component/comment/comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookComponent,
     WordsComponent,
-    DictionaryComponent
+    DictionaryComponent,
+    FullwordComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

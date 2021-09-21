@@ -20,7 +20,7 @@ interface Mean {
   mean: string;
 }
 
-export interface Comment {
+export interface WordComment {
   dislike: number;
   like: number;
   mean: string;

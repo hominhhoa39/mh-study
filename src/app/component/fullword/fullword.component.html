@@ -1,0 +1,42 @@
+<div fxFlex="column">
+  <div>
+    <span class="word-display dictionary">{{ word.word }}</span
+    ><span class="phonetic-display dictionary">{{ word.phonetic }}</span>
+  </div>
+  <div class="dictionary" *ngFor="let mean of word.means">
+    <div>
+      <span class="mean-display dictionary">{{ mean.mean }}</span>
+      <span class="kind-display dictionary">{{ mean.kind }}</span>
+    </div>
+    <div>
+      <div *ngFor="let example of mean.examples">
+        <div class="left-margin-div">{{ example.content }}</div>
+        <div class="left-margin-div">{{ example.transcription }}</div>
+        <div class="left-margin-div">{{ example.mean }}</div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="word.opposite_word">
+    <div fxLayout="row" style="margin-top: 12px">
+      <div class="label-display">Từ trái nghĩa:</div>
+      <div
+        *ngFor="let opposite of word.opposite_word"
+        fxLayout="row"
+      >
+        <div style="margin-left: 16px">{{ opposite }}</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="word.related_words">
+    <div fxLayout="row" style="margin-top: 12px">
+      <div class="label-display">Từ liên quan:</div>
+      <div
+        *ngFor="let relative of word.related_words.word"
+        fxLayout="row"
+      >
+        <div style="margin-left: 16px">{{ relative }}</div>
+      </div>
+    </div>
+  </ng-container>
+</div>

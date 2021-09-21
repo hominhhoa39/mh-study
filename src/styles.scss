@@ -20,7 +20,7 @@ body {
 }
 
 .mat-toolbar.mat-primary {
-  background: #DA7F8F;
+  background: #da7f8f;
   color: #fff;
 }
 
@@ -40,7 +40,7 @@ body {
 }
 
 .sidenav-container {
-  background-color: #E1E5EA;
+  background-color: #e1e5ea;
 }
 
 .example-spacer {
@@ -50,11 +50,58 @@ body {
 .word-display {
   font-weight: bold;
   color: #c51b0f;
+  &.dictionary{
+    font-size: 14pt;
+  }
+}
+
+.phonetic-display {
+  color: lightgray;
+  font-weight: bold;
+  &.dictionary {
+    margin-left: 12px;
+  }
+}
+
+.kind-display {
+  color: lightsteelblue;
+  &.dictionary {
+    margin-left: 12px;
+  }
 }
 
 .mean-display {
   color: #274fcc;
   font-weight: bold;
+  &.dictionary{
+    font-size: 13pt;
+  }
+}
+
+.commenter-display {
+  font-style: italic;
+  color: grey;
+  opacity: 0.8
+}
+
+.icon-display {
+  transform: scale(0.75);
+  color: grey;
+}
+
+.mean-div-display {
+  &.dictionary {
+    margin-top: 12px;
+  }
+}
+
+.label-display {
+  color: #c51b0f;
+  opacity: 0.8;
+}
+
+.left-margin-div {
+  margin-left: 16px;
 }
 
 .description {
@@ -76,20 +123,31 @@ body {
 }
 
 .mat-icon-button {
-  height:24px !important;
-  width:24px !important;
+  height: 24px !important;
+  width: 24px !important;
   line-height: 24px !important;
 }
-.mat-icon{
-  height:24px !important;
-  width:24px !important;
+.mat-icon {
+  height: 24px !important;
+  width: 24px !important;
 }
 
 .right-aligned-header {
   .mat-content {
     justify-content: space-between;
-    mat-panel-title, mat-panel-description {
+    mat-panel-title,
+    mat-panel-description {
       flex: 0 0 auto;
     }
   }
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid lightgray;
+  opacity: 0.5;
+  margin: 4px 0;
+  padding: 0;
 }

@@ -1,0 +1,18 @@
+<div fxLayout="column" *ngFor="let comment of comments; let i = index">
+  <div>{{ comment.mean }}</div>
+  <div fxLayout="row">
+    <div fxLayout="row" fxFlex="auto">
+      <div>
+        <mat-icon class="icon-display">thumb_up</mat-icon>{{ comment.like }}
+      </div>
+      <div>
+        <mat-icon class="icon-display">thumb_down</mat-icon
+        >{{ comment.dislike }}
+      </div>
+    </div>
+    <div fxFlex="0 0 150px" fxLayoutAlign="end start" class="commenter-display">
+      {{ comment.username }}
+    </div>
+  </div>
+  <hr *ngIf="i < comments.length - 1" />
+</div>
