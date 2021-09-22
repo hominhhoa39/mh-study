@@ -10,9 +10,6 @@ export class FullwordComponent {
   @Input() word!: FullWord;
   @Output() wordClickEvent = new EventEmitter<string>();
 
-  constructor() {
-    console.log('word', this.word);
-  }
   onWordClick(value: string) {
     this.wordClickEvent.emit(value);
   }

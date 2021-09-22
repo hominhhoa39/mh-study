@@ -11,7 +11,7 @@
         [matAutocomplete]="auto"
         [formControl]="searchWordsCtrl"
         placeholder="Input word"
-        (keydown)="keyDownFunction($event)"
+        (keydown)="onKeyDown($event)"
       />
       <button
         *ngIf="searchWords.value"
@@ -24,11 +24,15 @@
       <mat-autocomplete
         #auto="matAutocomplete"
         [displayWith]="displayFn"
-        (optionSelected)="onSearch($event.option.value)"
+        (optionSelected)="onSuggestionChange($event.option.value)"
       >
         <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
         <ng-container *ngIf="!isLoading">
-          <mat-option *ngFor="let word of filteredWords" [value]="word">
+          <mat-option
+            *ngFor="let word of filteredWords"
+            [value]="word"
+            [disabled]="word.meaning == undefined || word.meaning === ''"
+          >
             <span class="word-display"
               ><b>{{ word.word }}</b></span
             >
@@ -37,21 +41,25 @@
         </ng-container>
       </mat-autocomplete>
     </mat-form-field>
-    <div style="padding-top: 4px;">
+    <div style="padding-top: 4px">
       <button
-      mat-raised-button
-      color="accent"
-      [disabled]="searchWordsCtrl.value == undefined || searchWordsCtrl.value === ''"
-      (click)="searchWord($event)"
-      class="search-button"
-    >
-      Search
-    </button>
+        mat-raised-button
+        color="accent"
+        [disabled]="
+          searchWordsCtrl.value == undefined || searchWordsCtrl.value === ''
+        "
+        (click)="onSearchClick($event)"
+        class="search-button"
+      >
+        Search
+      </button>
     </div>
-
   </div>
   <mat-card *ngIf="searchResult">
-    <app-fullword [word]="searchResult" (wordClickEvent)="onWordClick($event)"></app-fullword>
+    <app-fullword
+      [word]="searchResult"
+      (wordClickEvent)="onWordClick($event)"
+    ></app-fullword>
   </mat-card>
   <mat-card *ngIf="comments && comments.length > 0">
     <app-comment [comments]="comments"></app-comment>

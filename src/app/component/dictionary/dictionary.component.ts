@@ -27,7 +27,6 @@ export class DictionaryComponent implements OnInit {
       .pipe(
         debounceTime(1000),
         tap(() => {
-          // this.errorMsg = '';
           this.filteredWords = [];
           this.isLoading = true;
         }),
@@ -56,9 +55,9 @@ export class DictionaryComponent implements OnInit {
     return w && w.word ? w.word : '';
   }
 
-  onSearch(w: Word): void {
-    if (w.word && w.word !== '') {
-      this.wordService.searchFullOutside(w.word).subscribe((data) => {
+  search(word: string): void {
+    if (word && word !== '') {
+      this.wordService.searchFullOutside(word).subscribe((data) => {
         this.searchResult = data;
         const mobileId = data.mobileId;
         if (mobileId && mobileId >= 0) {
@@ -72,20 +71,25 @@ export class DictionaryComponent implements OnInit {
     }
   }
 
-  searchWord(evt: MouseEvent) {
-    this.matAutocomplete.closePanel();
-    this.onSearch({ word: this.searchWordsCtrl.value });
+  onSuggestionChange(w: Word): void {
+    this.searchWords.setValue(w);
+    this.search(w.word);
   }
 
-  keyDownFunction(event: any) {
+  onSearchClick(evt: MouseEvent) {
+    this.matAutocomplete.closePanel();
+    this.search(this.searchWordsCtrl.value.word);
+  }
+
+  onKeyDown(event: any) {
     if (event.keyCode === 13) {
       this.matAutocomplete.closePanel();
-      this.onSearch({ word: this.searchWordsCtrl.value });
+      this.search(this.searchWordsCtrl.value.word);
     }
   }
 
   onWordClick(word: string) {
-    this.searchWords.setValue({word});
-    this.onSearch({ word });
+    this.searchWords.setValue({ word });
+    this.search(word);
   }
 }
