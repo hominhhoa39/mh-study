@@ -9,9 +9,9 @@
       <span class="kind-display dictionary">{{ mean.kind }}</span>
     </div>
     <div>
-      <div *ngFor="let example of mean.examples">
+      <div class="example-display" *ngFor="let example of mean.examples">
         <div class="left-margin-div">{{ example.content }}</div>
-        <div class="left-margin-div">{{ example.transcription }}</div>
+        <div class="left-margin-div transcription">{{ example.transcription }}</div>
         <div class="left-margin-div">{{ example.mean }}</div>
       </div>
     </div>

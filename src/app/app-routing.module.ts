@@ -11,11 +11,11 @@ const appRoutes: Routes = [
   //   data: { title: 'Book List' },
   // },
   {
-    path: '',
+    path: 'words',
     component: WordsComponent
   },
   {
-    path: 'dictionary',
+    path: '',
     component: DictionaryComponent
   }
   // { path: '', redirectTo: '/words', pathMatch: 'full' },

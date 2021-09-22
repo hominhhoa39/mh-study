@@ -78,7 +78,7 @@ export class DictionaryComponent implements OnInit {
 
   onSearchClick(evt: MouseEvent) {
     this.matAutocomplete.closePanel();
-    this.search(this.searchWordsCtrl.value.word);
+    this.search(this.searchWordsCtrl.value.word ?? this.searchWordsCtrl.value);
   }
 
   onKeyDown(event: any) {
