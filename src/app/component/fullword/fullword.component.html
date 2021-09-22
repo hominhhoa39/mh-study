@@ -19,11 +19,12 @@
   <ng-container *ngIf="word.opposite_word">
     <div fxLayout="row" style="margin-top: 12px">
       <div class="label-display">Từ trái nghĩa:</div>
-      <div
-        *ngFor="let opposite of word.opposite_word"
-        fxLayout="row"
-      >
-        <div class="single-word-link" (click)="onWordClick(opposite)">{{ opposite }}</div>
+      <div fxLayout="row wrap">
+        <ng-container *ngFor="let opposite of word.opposite_word">
+          <div class="single-word-link" (click)="onWordClick(opposite)">
+            {{ opposite }}
+          </div>
+        </ng-container>
       </div>
     </div>
   </ng-container>
@@ -31,11 +32,12 @@
   <ng-container *ngIf="word.related_words">
     <div fxLayout="row" style="margin-top: 12px">
       <div class="label-display">Từ liên quan:</div>
-      <div
-        *ngFor="let relative of word.related_words.word"
-        fxLayout="row"
-      >
-        <div class="single-word-link" (click)="onWordClick(relative)">{{ relative }}</div>
+      <div fxLayout="row wrap">
+        <ng-container *ngFor="let relative of word.related_words.word">
+          <div class="single-word-link" (click)="onWordClick(relative)">
+            {{ relative }}
+          </div>
+        </ng-container>
       </div>
     </div>
   </ng-container>
